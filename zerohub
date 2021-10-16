@@ -1,0 +1,16 @@
+wait(0.1)
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "Wait to loading Script";
+ Text = "Wait...";
+ Icon = "";
+ Duration = 5;
+ Callback = NotificationBindable;
+})
+wait(3)
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "Script Loading fail pls try again";
+ Text = "Fail to load Script";
+ Icon = "";
+ Duration = 5;
+ Callback = NotificationBindable;
+})
