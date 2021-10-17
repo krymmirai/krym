@@ -8,9 +8,11 @@ game.StarterGui:SetCore("SendNotification",  {
 })
 wait(3)
 game.StarterGui:SetCore("SendNotification",  {
- Title = "Script Loading fail pls try again";
- Text = "Fail to load Script";
+ Title = "Script has loaded";
+ Text = "Khoa non vcl - welcome to script remake by KoFu";
  Icon = "";
  Duration = 5;
  Callback = NotificationBindable;
 })
+wait(0.1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/krymmirai/krym/main/zerohub2",true))()
