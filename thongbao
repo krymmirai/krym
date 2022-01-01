@@ -1,0 +1,10 @@
+while true do
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "IB ThanhTrieu de duoc ho tro ";
+ Text = "ket thuc trial 1 day";
+ Icon = "";
+ Duration = 5;
+ Callback = NotificationBindable;
+})
+wait(5)
+end
