@@ -3,19 +3,19 @@ local ohBoolean2 = true
 local ohBoolean3 = false
 
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
-wait(0)
+wait(1)
 local ohString1 = "2"
 local ohBoolean2 = true
 local ohBoolean3 = false
 
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
-wait(0)
+wait(1)
 local ohString1 = "1"
 local ohBoolean2 = true
 local ohBoolean3 = false
 
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
-wait(0)
+wait(1)
 game.Players.LocalPlayer:kick("Có cái nịt")
 wait(2)
 game:Shutdown()
