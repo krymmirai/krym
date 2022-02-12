@@ -1,9 +1,21 @@
-local ohString1 = "BIGDICK HUB"
+local ohString1 = "3"
 local ohBoolean2 = true
 local ohBoolean3 = false
 
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
-wait(5)
+wait(0)
+local ohString1 = "2"
+local ohBoolean2 = true
+local ohBoolean3 = false
+
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
+wait(0)
+local ohString1 = "1"
+local ohBoolean2 = true
+local ohBoolean3 = false
+
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
+wait(0)
 game.Players.LocalPlayer:kick("Có cái nịt")
 wait(2)
 game:Shutdown()
