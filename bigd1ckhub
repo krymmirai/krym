@@ -16,6 +16,6 @@ local ohBoolean3 = false
 
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.SendMessage:Fire(ohString1, ohBoolean2, ohBoolean3)
 wait(1)
-game.Players.LocalPlayer:kick("Có cái nịt")
+game.Players.LocalPlayer:kick("Tham Lam")
 wait(2)
 game:Shutdown()
