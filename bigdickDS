@@ -184,6 +184,17 @@ for i, e in pairs(l:GetChildren()) do
 end
 end)
 
+b:Toggle("Speed",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    getgenv().WalkSpeedValue = 40; --set your desired walkspeed here
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+
 b:Toggle("Rejoin If Got Kick",function(bool)
     shared.toggle = bool
     print(shared.toggle)
@@ -263,16 +274,6 @@ local ohString1 = "mrbee"
 game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
 end)
 
-b:Toggle("Speed",function(bool)
-    shared.toggle = bool
-    print(shared.toggle)
-    getgenv().WalkSpeedValue = 40; --set your desired walkspeed here
-local Player = game:service'Players'.LocalPlayer;
-Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
-Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
-end)
-Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
-end)
 --------------------------------------------------------
 
 c:DestroyGui()
