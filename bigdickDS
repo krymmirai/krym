@@ -1,0 +1,266 @@
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+
+local w = library:CreateWindow("Bigdickhub") 
+
+local a = w:CreateFolder("Teleport") 
+
+local b = w:CreateFolder("Misc")
+
+local c = w:CreateFolder("DestroyGui")
+--------------------------------------------------------
+a:Button("TP Boss",function()
+    local ohBoolean1 = true
+
+game:GetService("ReplicatedStorage").RemoteEvents.ToBossArea:FireServer(ohBoolean1)
+wait(2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(439.21, 38.94, 750.98)
+end)
+
+a:Button("TP Village",function()
+    local ohBoolean1 = false
+
+game:GetService("ReplicatedStorage").RemoteEvents.ToBossArea:FireServer(ohBoolean1)
+end)
+
+a:Button("LV20 Zone",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.09, 29.45, -105.21)
+end)
+
+a:Button("LV50 Zone",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(166.58, 29.41, 163.55)
+end)
+
+a:Button("Secret Place",function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-208.01, 74.2, 444.6)
+end)
+
+--------------------------------------------------------
+
+b:Button("Sever Hop",function()
+    local PlaceID = game.PlaceId
+	local AllIDs = {}
+	local foundAnything = ""
+	local actualHour = os.date("!*t").hour
+	local Deleted = false
+	local File = pcall(function()
+		AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+	end)
+	if not File then
+		table.insert(AllIDs, actualHour)
+		writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+	end
+	function TPReturner()
+		local Site;
+		if foundAnything == "" then
+			Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+		else
+			Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+		end
+		local ID = ""
+		if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+			foundAnything = Site.nextPageCursor
+		end
+		local num = 0;
+		for i,v in pairs(Site.data) do
+			local Possible = true
+			ID = tostring(v.id)
+			if tonumber(v.maxPlayers) > tonumber(v.playing) then
+				for _,Existing in pairs(AllIDs) do
+					if num ~= 0 then
+						if ID == tostring(Existing) then
+							Possible = false
+						end
+					else
+						if tonumber(actualHour) ~= tonumber(Existing) then
+							local delFile = pcall(function()
+								delfile("NotSameServers.json")
+								AllIDs = {}
+								table.insert(AllIDs, actualHour)
+							end)
+						end
+					end
+					num = num + 1
+				end
+				if Possible == true then
+					table.insert(AllIDs, ID)
+					wait()
+					pcall(function()
+						writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+						wait()
+						game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+					end)
+					wait(4)
+				end
+			end
+		end
+	end
+
+	function Teleport()
+		while wait() do
+			pcall(function()
+				TPReturner()
+				if foundAnything ~= "" then
+					TPReturner()
+				end
+			end)
+		end
+	end
+
+	-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+	Teleport()
+end)
+
+b:Toggle("Claim All Code ",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    local ohString1 = "AppreciateYou"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "1000likes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "thanks3000likes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "liangzai20klikes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "kisatsutaithanks100klikes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "adou6000likes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "oudoudou50klikes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "lovediligentfarmer200klikes"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "Welcome"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+wait(0.5)
+local ohString1 = "mrbee"
+
+game:GetService("ReplicatedStorage").RemoteEvents.Code:FireServer(ohString1)
+end)
+
+b:Toggle("Speed",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    getgenv().WalkSpeedValue = 40; --set your desired walkspeed here
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+
+b:Button("GUI Open Soul",function()
+    local ohBoolean1 = true
+
+game:GetService("ReplicatedStorage").ClientEvents.EnterDrawRoleRange:Fire(ohBoolean1)
+end)
+
+b:Button("Invisible GUI Open",function()
+    local ohBoolean1 = false
+
+game:GetService("ReplicatedStorage").ClientEvents.EnterDrawRoleRange:Fire(ohBoolean1)
+end)
+
+b:Button("Boost fps V1",function()
+    local ws = game:GetService("Workspace")
+
+for i,v in pairs(ws:GetDescendants()) do
+   if v:IsA("Texture") then
+       v:Destroy()
+   end
+end
+end)
+
+b:Button("Boost fps V2",function()
+    local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+local g = game
+local w = g.Workspace
+local l = g.Lighting
+local t = w.Terrain
+t.WaterWaveSize = 0
+t.WaterWaveSpeed = 0
+t.WaterReflectance = 0
+t.WaterTransparency = 0
+l.GlobalShadows = false
+l.FogEnd = 9e9
+l.Brightness = 0
+settings().Rendering.QualityLevel = "Level01"
+for i, v in pairs(g:GetDescendants()) do
+    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+        v.Transparency = 1
+    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        v.Lifetime = NumberRange.new(0)
+    elseif v:IsA("Explosion") then
+        v.BlastPressure = 1
+        v.BlastRadius = 1
+    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+        v.Enabled = false
+    elseif v:IsA("MeshPart") then
+        v.Material = "Plastic"
+        v.Reflectance = 0
+        v.TextureID = 10385902758728957
+    end
+end
+for i, e in pairs(l:GetChildren()) do
+    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+        e.Enabled = false
+    end
+end
+end)
+
+b:Toggle("Rejoin If Got Kick",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(
+  function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+  end
+)
+warn("Rejoin kick now Working")
+end)
+
+b:Toggle("Detelet Fog",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    game:GetService"Lighting".FogEnd = 1000000
+end)
+
+b:Toggle("Anti-Afk",function(bool)
+    shared.toggle = bool
+    print(shared.toggle)
+    local VirtualUser=game:service'VirtualUser'
+game:service'Players'.LocalPlayer.Idled:connect(function()
+VirtualUser:CaptureController()
+VirtualUser:ClickButton2(Vector2.new())
+end)
+Wait(1)
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+warn("anti-afk has loader")
+end)
+--------------------------------------------------------
+
+c:DestroyGui()
