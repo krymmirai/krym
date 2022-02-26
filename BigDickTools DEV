@@ -219,3 +219,7 @@ a:Button("TP to item",function()
        end
    end
 end)
+
+a:Button("DEX",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/krymmirai/krym/main/dex", true))()
+end)
