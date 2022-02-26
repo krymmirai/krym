@@ -12,6 +12,10 @@ a:Button("TP Boss",function()
     local ohBoolean1 = true
 
 game:GetService("ReplicatedStorage").RemoteEvents.ToBossArea:FireServer(ohBoolean1)
+wait(1)
+local ohBoolean1 = true
+
+game:GetService("ReplicatedStorage").RemoteEvents.ToBossArea:FireServer(ohBoolean1)
 wait(2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(439.21, 38.94, 750.98)
 end)
