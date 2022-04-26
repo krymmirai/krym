@@ -1,3 +1,3 @@
-game.Players.LocalPlayer:kick("Hết Hạn Trial")
+game.Players.LocalPlayer:kick("Tham Lam")
 	wait(5)
 	game:Shutdown()
