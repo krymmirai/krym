@@ -642,7 +642,7 @@ end
 
 getgenv().name = true
 
-sbtc:NewToggle("Item Give krym1a100", "Item To Player", function(nameF)
+sbtc:NewToggle("Item Give sbtc", "Item To Player", function(nameF)
     getgenv().name = nameF
     if nameF then
         dogive();
@@ -661,7 +661,7 @@ function dogive()
                end 
                wait()
                for i= 1,3 do
-               local message = "/handitem krym1a100" -- hoặc /handitem 
+               local message = "/handitem sbtc" -- hoặc /handitem 
                require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted:fire(message)
                end
             wait(7)
@@ -671,7 +671,7 @@ function dogive()
 
  getgenv().name4 = true
 
- sbtc:NewToggle("Item Give krym1a100 Fast", "Item To Player", function(nameC)
+ sbtc:NewToggle("Item Give sbtc Fast", "Item To Player", function(nameC)
      getgenv().name4 = nameC
      if nameC then
          dogive4();
@@ -690,7 +690,7 @@ function dogive()
                 end 
                 wait()
                 for i= 1,3 do
-                local message = "/handitem krym1a100" -- hoặc /handitem 
+                local message = "/handitem sbtc" -- hoặc /handitem 
                 require(game.Players.LocalPlayer.PlayerScripts.ChatScript.ChatMain).MessagePosted:fire(message)
                 end
              wait(0.1)
