@@ -1,7 +1,7 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local lp = game.Players.LocalPlayer
 local X = Material.Load({
-    Title = "Keybrew Hub | Anime Dimensions",
+    Title = "Keybrew / Zero2 Hub | Anime Dimensions",
     Style = 3,
     SizeX = 300,
     SizeY = 350,
@@ -29,10 +29,17 @@ local Cred = X.New({
     Title = "Credits"
 })
     Cred.Button({
-    Text = "Copy Discord UyuSF4fPC9",
+    Text = "Copy Discord Keybrew",
     Callback = function()
         setclipboard("https://discord.gg/UyuSF4fPC9")
         toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+Cred.Button({
+    Text = "Copy Discord Zero2",
+    Callback = function()
+        setclipboard("https://discord.gg/GdqqxZC3uz")
+        toclipboard("https://discord.gg/GdqqxZC3uz")
     end,
 })
 
@@ -99,7 +106,7 @@ end
             }
 
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
-            wait(.5)
+            wait(0.3)
             end) 
         end
     end,
@@ -111,9 +118,9 @@ Main.Slider({
     Callback = function(Value)
         getgenv().dis = Value
     end,
-    Min = -20,
+    Min = -15,
     Max = 20,
-    Def = 1
+    Def = -10
 })
 
 Main.Slider({
@@ -121,8 +128,8 @@ Main.Slider({
     Callback = function(Value)
         getgenv().spe = Value
     end,
-    Min = 50,
-    Max = 275,
+    Min = 100,
+    Max = 300,
     Def = 1
 })
 
@@ -154,7 +161,7 @@ Main.Toggle({
                 },
                 [3] = 1
             }
-            wait(0.3)
+            wait(0.2)
 
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
             local args = {
@@ -164,7 +171,7 @@ Main.Toggle({
                 },
                 [3] = 2
             }
-            wait(0.3)
+            wait(0.2)
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
             local args = {
                 [1] = "UseSkill",
@@ -173,7 +180,7 @@ Main.Toggle({
                 },
                 [3] = 3
             }
-            wait(0.3)
+            wait(0.2)
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
             local args = {
                 [1] = "UseSkill",
@@ -184,7 +191,7 @@ Main.Toggle({
             }
 
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
-            wait(0.3)
+            wait(0.2)
             end)
         end
     end,
