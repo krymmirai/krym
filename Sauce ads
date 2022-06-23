@@ -118,7 +118,7 @@ Main.Slider({
     Callback = function(Value)
         getgenv().dis = Value
     end,
-    Min = -15,
+    Min = -30,
     Max = 20,
     Def = -10
 })
