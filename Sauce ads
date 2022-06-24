@@ -202,6 +202,7 @@ Main.Toggle({
             }
 
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
+wait(0.1)
             end)
         end
     end,
