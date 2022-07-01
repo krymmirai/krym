@@ -119,7 +119,47 @@ Main.Toggle({
     end,
     Enabled = false
 })
-   
+
+
+Main.Toggle({
+    Text = "Auto Assist Skill",
+    Callback = function(a)
+        aa = a
+        while aa do task.wait()   
+            pcall(function()  
+             local args = {
+                [1] = "UseAssistSkill",
+                [2] = {
+                    ["hrpCFrame"] = getNPC().HumanoidRootPart.CFrame;
+                    ["attackNumber"] = 1
+                },
+                [3] = 1
+            }
+
+            game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
+
+
+            wait(0.5)
+            local args = {
+                [1] = "UseAssistSkill",
+                [2] = {
+                    ["hrpCFrame"] = getNPC().HumanoidRootPart.CFrame;
+                    ["attackNumber"] = 1
+                },
+                [3] = 2
+            }
+
+            game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
+
+
+            wait(0.5)
+
+
+            end) 
+        end
+    end,
+    Enabled = false
+})
 
 
 Main.Toggle({
@@ -136,7 +176,6 @@ Main.Toggle({
                 [3] = 1
             }
             wait(0.1)
-
             game:GetService("ReplicatedStorage").RemoteEvents.MainRemoteEvent:FireServer(unpack(args))
             local args = {
                 [1] = "UseSkill",
