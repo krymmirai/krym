@@ -1,0 +1,11 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Get PlaceID", "Midnight")
+
+local Tab = Window:NewTab("Get PlaceID")
+local Section = Tab:NewSection("Test")
+
+
+Section:NewButton("Get PlaceId", "ButtonInfo", function()
+    setclipboard("test"game.placeid")
+            toclipboard("test"game.placeid")
+end)
