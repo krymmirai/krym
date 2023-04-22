@@ -1,0 +1,330 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+    end
+    wait()
+    game.StarterGui:SetCore("SendNotification",  {
+        Title = "Zero2 Hub";
+        Text = "Loading Hub...";
+        Icon = "";
+        Duration = 5;
+        Callback = NotificationBindable;
+       })
+    local Players = game:GetService("Players")
+    local ReplicatedFirst = game:GetService("ReplicatedFirst")
+    local TweenService = game:GetService("TweenService")
+    
+    local player = Players.LocalPlayer 
+    local playerGui = player:WaitForChild("PlayerGui")
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.IgnoreGuiInset = true
+    screenGui.Parent = playerGui
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(0.2, 0, 0.2, 0)
+    textLabel.BackgroundColor3 = Color3.fromRGB(0, 20, 40)
+    textLabel.Font = Enum.Font.GothamSemibold
+    textLabel.Position = UDim2.new(0.40, 0, 0.40, 0)
+    textLabel.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+    textLabel.Text = "Loading"
+    textLabel.TextSize = 25
+    textLabel.Parent = screenGui
+    local loadingRing = Instance.new("ImageLabel")
+    loadingRing.Size = UDim2.new(0, 150, 0, 150)
+    loadingRing.BackgroundTransparency = 1
+    loadingRing.Image = "rbxassetid://4965945816"
+    loadingRing.AnchorPoint = Vector2.new(0.5, 0.5)
+    loadingRing.Position = UDim2.new(0.5, 0, 0.5, 0)
+    loadingRing.Parent = screenGui
+    local ImageLabel = Instance.new("ImageLabel")
+    ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+    ImageLabel.Position = UDim2.new(0.400000006, 0, 0.372999996, 0)
+    ImageLabel.Size = UDim2.new(0, 50, 0, 50)
+    ImageLabel.Image = "rbxassetid://8460953440"
+    -- Remove the default loading screen
+    ReplicatedFirst:RemoveDefaultLoadingScreen()
+    
+    local tweenInfo = TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+    local tween = TweenService:Create(loadingRing, tweenInfo, {Rotation = 360})
+    tween:Play()
+wait(3)
+screenGui:Destroy()
+game.StarterGui:SetCore("SendNotification",  {
+    Title = "Zero2 Hub";
+    Text = "Complete Loading";
+    Icon = "";
+    Duration = 5;
+    Callback = NotificationBindable;
+   })
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+--UI Library Window
+
+local Window = Library.CreateLib("BCW (Free Ver) ", "Midnight")
+local status = Window:NewTab("status")
+local Tab = Window:NewTab("???")
+local afks = Window:NewTab("AFK")
+--status
+local stat = status:NewSection("Status")
+stat:NewLabel("Name : ".. game.Players.LocalPlayer.Character.Name .." [User]")
+stat:NewLabel("PlaceID : ".. game.PlaceId .."")
+stat:NewButton("Copy PlaceId", "ButtonInfo", function()
+    setclipboard(game.PlaceId)
+end)
+stat:NewLabel("JobID : ".. game.JobId .."")
+stat:NewButton("Copy JobId", "ButtonInfo", function()
+    setclipboard(game.JobId)
+end)
+stat:NewLabel("Script Make By SadThudatinh (Owner)")
+stat:NewButton("Sever Hop", "ButtonInfo", function()
+    local Http = game:GetService("HttpService")
+    local TPS = game:GetService("TeleportService")
+    local Api = "https://games.roblox.com/v1/games/"
+    local _place = game.PlaceId
+    local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+    function ListServers(cursor)
+      local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+      return Http:JSONDecode(Raw)
+    end
+    local Server, Next; repeat
+      local Servers = ListServers(Next)
+      Server = Servers.data[10]
+      Next = Servers.nextPageCursor
+    until Server
+    TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+end)
+stat:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.RightControl, function()
+	Library:ToggleUI()
+end)
+
+--afk
+local afk = afks:NewSection("MISC")
+afk:NewButton("TP afk zone", "ALT", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 200, 0)
+    wait(0.1)
+    local baseplate = Instance.new("Part")
+    baseplate.Parent = workspace
+    baseplate.Size = Vector3.new(3,1,3)
+    baseplate.Anchored = true
+    baseplate.Name = "Baseplate"
+    baseplate.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-2,0)
+    end)
+
+afk:NewToggle("Lock move", "bruh", function(state)
+        enabled = false
+        if state then
+            enabled = true
+        else
+            enabled = false
+        end
+        print(enabled)
+        while enabled == true do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 200, 0)
+            wait(0.5)
+            if enabled == false then
+                break
+            end
+        end
+    end)
+
+afk:NewToggle("Auto Equip", "bruh", function(state)
+        enabled = false
+        if state then
+            enabled = true
+        else
+            enabled = false
+        end
+        print(enabled)
+        while enabled == true do
+            for _, tool in ipairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                if tool:IsA("Tool") then
+                     tool.Parent = game:GetService("Players").LocalPlayer.Character -- I didn't use Equip because the Equip function unequips any other tools in your character.
+                end
+            end
+            wait(2)
+            if enabled == false then
+                break
+            end
+        end
+    end)
+afk:NewToggle("Auto Loot", "text", function(state)
+        enabled = false
+        if state then
+            enabled = true
+        else
+            enabled = false
+        end
+        print(enabled)
+        while enabled == true do
+            for k,v in pairs(game.Workspace:GetDescendants()) do
+                if v:IsA("BasePart") and v:FindFirstChild("TouchInterest") then
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                   wait() 
+               end
+           end
+              wait(0.5)
+            if enabled == false then
+                break
+            end
+        end
+    end)
+afk:NewButton("Fe Infinite", "ButtonInfo", function()
+        dofe()
+    end)
+
+afk:NewButton("Auto Loot Premium", "ButtonInfo", function()
+    game.StarterGui:SetCore("SendNotification",  {
+        Title = "Zero2 Hub";
+        Text = "Only Developer";
+        Icon = "";
+        Duration = 5;
+        Callback = NotificationBindable;
+       })
+    end)
+
+
+local Section = Tab:NewSection("misc")
+Section:NewSlider("Speed", "Speed Hack", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().WalkSpeedValue = s; 
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+end)
+Section:NewSlider("JumpPower", "JumpPower", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    getgenv().JumpPowerValue = s; 
+local Player = game:service'Players'.LocalPlayer;
+Player.Character.Humanoid:GetPropertyChangedSignal'JumpPower':Connect(function()
+Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+end)
+Player.Character.Humanoid.JumpPower = getgenv().JumpPowerValue;
+end)
+
+Section:NewButton("teleshop", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18.4, 7.48, -211.71)
+end)
+Section:NewButton("TP Mid", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(49.73, 2.48, -14.1)
+end)
+Section:NewButton("TP Afk", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(59.16, -220, -99989.06)
+end)
+Section:NewButton("Test Dame Place", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(59.16, -200, -99989.06)
+end)
+Section:NewButton("Light", "ButtonInfo", function()
+    dolight()
+end)
+--light
+function dolight()
+    if not _G.FullBrightExecuted then
+
+        _G.FullBrightEnabled = false
+    
+        _G.NormalLightingSettings = {
+            Brightness = game:GetService("Lighting").Brightness,
+            ClockTime = game:GetService("Lighting").ClockTime,
+            FogEnd = game:GetService("Lighting").FogEnd,
+            GlobalShadows = game:GetService("Lighting").GlobalShadows,
+            Ambient = game:GetService("Lighting").Ambient
+        }
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
+            if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
+                _G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").Brightness = 1
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
+            if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
+                _G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").ClockTime = 12
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
+            if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
+                _G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").FogEnd = 786543
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+            if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
+                _G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").GlobalShadows = false
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
+            if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
+                _G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+            end
+        end)
+    
+        game:GetService("Lighting").Brightness = 1
+        game:GetService("Lighting").ClockTime = 12
+        game:GetService("Lighting").FogEnd = 786543
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+    
+        local LatestValue = true
+        spawn(function()
+            repeat
+                wait()
+            until _G.FullBrightEnabled
+            while wait() do
+                if _G.FullBrightEnabled ~= LatestValue then
+                    if not _G.FullBrightEnabled then
+                        game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
+                        game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
+                        game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
+                        game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
+                        game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
+                    else
+                        game:GetService("Lighting").Brightness = 1
+                        game:GetService("Lighting").ClockTime = 12
+                        game:GetService("Lighting").FogEnd = 786543
+                        game:GetService("Lighting").GlobalShadows = false
+                        game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+                    end
+                    LatestValue = not LatestValue
+                end
+            end
+        end)
+    end
+    
+    _G.FullBrightExecuted = true
+    _G.FullBrightEnabled = not _G.FullBrightEnabled
+end
+
+function dofe()
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source")()
+end
